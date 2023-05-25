@@ -9,7 +9,32 @@
 </head>
 
 <body>
+  <header>
+    <h1>Foodadvisor</h1>
+  </header>
+  <nav>
+     {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+  </nav>
+  <main>
+<div class="container">
+        <div>
+            <h2>What are you craving?</h2>
+            
+            <div class="input-group">
+                <input type="text" id="food" style="width: 600px"
+                    placeholder="Enter food you like" />
+                <button id="food-recommend">Search</button>
+            </div>
+        </div>
+        <div id="music-results"></div>
+    </div>
   {{{body}}}
+  </main>
 </body>
 
 </html>

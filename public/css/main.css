@@ -2,3 +2,20 @@
 * {
 	outline: red dashed 2px;
 }
+
+header {
+	padding: 20px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	background-color: cornsilk;
+}
+
+header h1 {
+	display: inline-block;
+	font-size: 44px;
+
+}
+
+header nav {
+	display: inline-block;
+	margin-left: 25px;
+}
