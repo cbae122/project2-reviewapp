@@ -2,3 +2,18 @@
 * {
 	outline: red dashed 2px;
 }
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.icon-text .material-icons {
+    margin-left: 5px;
+}
+
+.icon-text .brand-logo {
+	display: flex;
+	align-items: center;
+}
+
