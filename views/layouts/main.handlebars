@@ -10,27 +10,28 @@
   
 </head>
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="food"></span>
-        <div class="center-align">
-          <a href="/">What should we EAT?!</a>
-        </div>
-        
-      </h1>
+  <header>
       <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="left brand-logo">What should we EAT?!</a>
+          <ul id="nav-mobile" class="right">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">Profile</a> |
-        <button class="no-button" id="logout">Logout</button>
+        <li><a href="/profile">Profile</a><li>
+        <li><button class="no-button" id="logout">Logout</button></li>
         {{else}}
-        <div class="right-align">
-          <a href="/login">Login</a>
-        </div>
-        
+          <li><a href="/login">Login/Sign up</a><li>
         {{/if}}
+        </ul>
+        </div>
       </nav>
+      </header>
+
+      <div class="display-flex justify-space between align-center p-2">
+        <h1>
+          <span role="img" aria=-label="food"></span>
+        </h1>
+        </div>
       {{{body}}}
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
