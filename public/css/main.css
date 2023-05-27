@@ -17,3 +17,10 @@
 	align-items: center;
 }
 
+body {
+	font-family: "Helvetica", sans-serif;
+}
+
+.nav-wrapper {
+	background-color:black;
+}
