@@ -3,5 +3,5 @@ const userRoutes = require('./userRoutes');
 const geolocation = require('./googleroutes');
 
 router.use('/users', userRoutes);
-router.use('/reviews', )
+router.use('/reviews', );
 module.exports = router;
