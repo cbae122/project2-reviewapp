@@ -1,0 +1,38 @@
+{{#if logged_in}}
+{{!-- <div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div> --}}
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Review:</h3>
+    <form class="form new-review-form">
+      <div class="form-group">
+        <label for="restaurant-name">Restaurant Name:</label>
+        <input class="form-input" type="text" id="restaurant-name" name="restaurant-name" />
+      </div>
+      <div class="form-group">
+        <label for="restaurant-review">Review:</label>
+        <textarea class="form-input" id="restaurant-review" name="restaurant-review"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Post Review!</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-6 selected-restaurant">
+    <h3>Review this Restaurant</h3>
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href=""></a></h4>
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+<a href="/login">You must login before you can post a review!</a>
+{{/if}}
+
+<script src=""></script>

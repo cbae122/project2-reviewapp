@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS foodreview_app;
-CREATE DATABASE foodreview_app;
+DROP DATABASE IF EXISTS foodreview_db;
+CREATE DATABASE foodreview_db;
