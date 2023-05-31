@@ -7,68 +7,64 @@ router.get('/', async (req, res) => {
     const { zipCode, location, radius } = req.body;
 
     const geolocation = await User.create(req.body);
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},${location}&key=AIzaSyCppntGd7uA7jU_xH_ocsTMXk4oXh_fIZI`;
+    // https://maps.googleapis.com/maps/api/geocode/json?address="91765"&key=AIzaSyCppntGd7uA7jU_xH_ocsTMXk4oXh_fIZI
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},${location}&geo-key=AIzaSyCppntGd7uA7jU_xH_ocsTMXk4oXh_fIZI`;
     const parameters = req.body.param1;
 
     axios.get(geocodingUrl + parameters)
       .then(geocodingResponse => {
-        // Handle geocoding API response
+        // Geocoding API response
         const { results } = geocodingResponse.data;
         if (results.length === 0) {
           throw new Error('Invalid zip code');
         }
-        // Extract necessary data from geocoding response
+        // Extracting data from geocoding response
         const { lat, lng } = results[0].geometry.location;
-        const formattedAddress = results[0].formatted_address;
 
         // Make request to Places API
-        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&key=YOUR_PLACES_API_KEY`;
+        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&places-key=AIzaSyCqybTpBcQTsgIdcFay6vudA-v8PPTDRuk`;
+        // tested the api in insominia 
+        // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0286,-117.8103&radius=100&type=restaurant&key=AIzaSyCqybTpBcQTsgIdcFay6vudA-v8PPTDRuk
         return axios.get(placesUrl);
       })
       .then(placesResponse => {
-        // Handle Places API response
+        //Places API response
         const { results: placesResults } = placesResponse.data;
-        // Extract necessary data from places response
+        //Extracting data from places response
         const nearbyRestaurants = placesResults.map(place => {
           return {
             name: place.name,
             address: place.vicinity,
             rating: place.rating,
+            photoReference: place.photos ? place.photos[0].photo_reference : null,
+            openingHours: place.opening_hours ? place.opening_hours.weekday_text : null,
           };
         });
         console.log(JSON.stringify(placesResponse.data));
 
-
-        // Google PLace Photo API
-        const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoReference}&key=YOUR_PLACES_API_KEY`;
-        return axios.get(photoUrl);
-      })
-      .then(photoResponse => {
-        // Handle Place Photos API response
-        const { headers } = photoResponse;
-        const contentType = headers['content-type'];
-        const imageData = photoResponse.data;
-
-        // Extract necessary data from photo response
-        const photoReference = placesResults[0].photos[0].photo_reference;
-        const photoHeight = placesResults[0].photos[0].height;
-        const photoWidth = placesResults[0].photos[0].width;
-        const photoAttributions = placesResults[0].photos[0].html_attributions;
-
-        // Continue with the session save and response
-        req.session.save(() => {
-          req.session.user_id = geolocation.id;
-          req.session.logged_in = true;
+        const placeDetailsPromises = placesResults.map(place => {
+          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=YOUR_PLACES_API_KEY`;
+          return axios.get(placeDetailsUrl);
         });
-        // including extracted data for  photo image in response.
-        const extractedData = {
-          contentType,
-          imageData,
-          photoReference,
-          photoHeight,
-          photoWidth,
-          photoAttributions
-        };
+
+        return Promise.all(placeDetailsPromises);
+      })
+      .then(placeDetailsResponses => {
+        const extractedData = placeDetailsResponses.map(response => {
+          const { result } = response.data;
+
+          return {
+            address: result.formatted_address,
+            location: result.geometry.location,
+            photoReference: result.photos ? result.photos[0].photo_reference : null,
+            openingHours: result.opening_hours ? result.opening_hours.weekday_text : null,
+            reviews: result.reviews ? result.reviews.map(review => ({
+              author: review.author_name,
+              rating: review.rating,
+              text: review.text,
+            })) : null,
+          };
+        });
 
         res.status(200).json({ geolocation, nearbyRestaurants, extractedData });
       })
