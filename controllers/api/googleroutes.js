@@ -7,8 +7,8 @@ router.get('/', async (req, res) => {
     const { zipCode, location, radius } = req.body;
 
     const geolocation = await User.create(req.body);
-    // https://maps.googleapis.com/maps/api/geocode/json?address="91765"&key=AIzaSyCppntGd7uA7jU_xH_ocsTMXk4oXh_fIZI
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},${location}&geo-key=${API_KEY}`;
+    // https://maps.googleapis.com/maps/api/geocode/json?address="91765"&key=
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},${location}&key=${API_KEY}`;
     const parameters = req.body.param1;
 
     axios.get(geocodingUrl + parameters)
@@ -22,9 +22,9 @@ router.get('/', async (req, res) => {
         const { lat, lng } = results[0].geometry.location;
 
         // Make request to Places API
-        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&places-key=${API_KEY}`;
+        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&key=${API_KEY}`;
         // tested the api in insominia 
-        // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0286,-117.8103&radius=100&type=restaurant&key=AIzaSyCqybTpBcQTsgIdcFay6vudA-v8PPTDRuk
+        // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0286,-117.8103&radius=100&type=restaurant&key=
         return axios.get(placesUrl);
       })
       .then(placesResponse => {
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
         console.log(JSON.stringify(placesResponse.data));
 
         const placeDetailsPromises = placesResults.map(place => {
-          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=YOUR_PLACES_API_KEY`;
+          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${API_KEY}`;
           return axios.get(placeDetailsUrl);
         });
 
