@@ -4,26 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHANGE THIS</title>
+  <title>What should we EAT?!</title>
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="food"></span>
-        <a href="/">What should we EAT?!</a>
-      </h1>
+   
+  <header>
       <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="left brand-logo">What should we EAT?!
+          <i class="material-icons right">local_dining</i>
+          </a>
+          <ul id="nav-mobile" class="right">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">Profile</a> |
-        <button class="no-button" id="logout">Logout</button>
+        <li><a href="/profile">Profile</a><li>
+        <li><button class="no-button" id="logout">Logout</button></li>
         {{else}}
-        <a href="/login">Login</a>
+          <li><a href="/login">Login/Sign up</a><li>
         {{/if}}
+        </ul>
+        </div>
       </nav>
+      </header>
+
+      <div class="display-flex justify-space between align-center p-2">
+        <h1>
+          <span role="img" aria=-label="food"></span>
+        </h1>
+        </div>
       {{{body}}}
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 
 </html>

@@ -23,6 +23,8 @@ const searchButton = document.querySelector('search-btn');
 searchButton.addEventListener('click', function(){
   var position = document.getElementById('food-search').value;
 
+  fetch('/api/google');
+
   // var axios = require('axios');
 
   // var config = {
