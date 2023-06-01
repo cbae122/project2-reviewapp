@@ -25,3 +25,4 @@ Result.hasMany(Comment, {
 
 module.exports = { User, Result, Comment};
 
+
