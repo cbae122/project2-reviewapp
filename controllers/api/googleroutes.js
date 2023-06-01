@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
           };
         });
         console.log(JSON.stringify(placesResponse.data));
-
+        
         const placeDetailsPromises = placesResults.map(place => {
           const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${API_KEY}`;
           return axios.get(placeDetailsUrl);
@@ -58,11 +58,11 @@ router.get('/', async (req, res) => {
             location: result.geometry.location,
             photoReference: result.photos ? result.photos[0].photo_reference : null,
             openingHours: result.opening_hours ? result.opening_hours.weekday_text : null,
-            reviews: result.reviews ? result.reviews.map(review => ({
-              author: review.author_name,
-              rating: review.rating,
-              text: review.text,
-            })) : null,
+            // reviews: result.reviews ? result.reviews.map(review => ({
+            //   author: review.author_name,
+            //   rating: review.rating,
+            //   text: review.text,
+            // })) : null,
           };
         });
 
