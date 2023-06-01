@@ -1,11 +1,25 @@
-const sequelize = require
+const { Result, User } = require('../models');
+const sequelize = require('../config/connection')
 
 const router = require('express').Router();
 // const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    res.render('homepage');
+    const projectData = await Result.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+    const projects = projectData.map((project) => project.get({ plain: true }));
+
+    res.render('homepage', {
+      projects,
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
