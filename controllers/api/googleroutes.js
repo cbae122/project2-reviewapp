@@ -44,12 +44,12 @@ router.get('/:zip/:location?', async (req, res) => {
         });
         // console.log(JSON.stringify(placesResponse.data));
         
-        const placeDetailsPromises = placesResults.map(place => {
-          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${process.env.API_KEY}`;
-          return axios.get(placeDetailsUrl);
-        });
+        // const placeDetailsPromises = placesResults.map(place => {
+        //   const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${process.env.API_KEY}`;
+        //   return axios.get(placeDetailsUrl);
+        // });
 
-        return Promise.all(placeDetailsPromises);
+        // return Promise.all(placeDetailsPromises);
       })
       .then(placeDetailsResponses => {
         console.log(placeDetailsResponses);
