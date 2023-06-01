@@ -2,16 +2,16 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const axios = require('axios');
 
-router.get('/', async (req, res) => {
+router.get('/:zip/:location?', async (req, res) => {
   try {
-    const { zipCode, location, radius } = req.body;
+    // const { zipCode, location, radius } = req.body;
 
-    const geolocation = await User.create(req.body);
+    // const geolocation = await User.create(req.body);
     // https://maps.googleapis.com/maps/api/geocode/json?address="91765"&key=
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},${location}&key=${API_KEY}`;
-    const parameters = req.body.param1;
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip},${location}&key=${process.env.API_KEY}`;
+    // const parameters = req.body.param1;
 
-    axios.get(geocodingUrl + parameters)
+    axios.get(geocodingUrl)
       .then(geocodingResponse => {
         // Geocoding API response
         const { results } = geocodingResponse.data;
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         const { lat, lng } = results[0].geometry.location;
 
         // Make request to Places API
-        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&key=${API_KEY}`;
+        const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=restaurant&key=${process.env.API_KEY}`;
         // tested the api in insominia 
         // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0286,-117.8103&radius=100&type=restaurant&key=
         return axios.get(placesUrl);
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
         console.log(JSON.stringify(placesResponse.data));
         
         const placeDetailsPromises = placesResults.map(place => {
-          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${API_KEY}`;
+          const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${process.env.API_KEY}`;
           return axios.get(placeDetailsUrl);
         });
 
@@ -66,14 +66,14 @@ router.get('/', async (req, res) => {
           };
         });
 
-        res.status(200).json({ geolocation, nearbyRestaurants, extractedData });
+        res.status(200).json({ geolocation, placeDetailsResponses, extractedData });
       })
       .catch(error => {
         res.status(500).json({ error: error.message });
       });
   } catch (err) {
     res.status(400).json(err);
-  }
+  } 
 });
 
 module.exports = router;
