@@ -3,22 +3,23 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
-    try {
-       const comment = await Comment.findAll({});
-res.status(200).json(comment);
+
+  try {
+    const comment = await Comment.findAll({});
+    res.status(200).json(comment);
     
-} catch (err) {
+  } catch (err) {
     res.status(400).json(err);
-}
-    
+  }
+
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     // check the session
     if (req.session) {
       Comment.create({
         comment_text: req.body.comment_text,
-        result_id: req.body.result_id,
+        post_id: req.body.post_id,
         // use the id from the session
         user_id: req.session.user_id,
       })
@@ -50,3 +51,4 @@ router.post('/', withAuth, (req, res) => {
   });
   
   module.exports = router;
+
