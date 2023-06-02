@@ -6,17 +6,25 @@
 
 <div class="row">
   <div class="col-md-6">
+    <h2>Look for food!</h2>
+
+<div class="row">
+  <div class="col-md-6">
     <h2 class="center-align">Satisfy your cravings!</h2>
 
 
     <form class="form login-form">
       <div class="form-group">
-        <label for="food-search">Enter type of food or restaurants!</label>
+        <label for="food-search">Enter City or Zip Code!</label>
         <input class="form-input" type="text" id="food-search" />
+        <label for="food-search-radius">Enter search radius!</label>
+        <input class="form-input" type="text" id="food-search-radius" />
         {{!-- radius & zip code --}} 
       </div>
       <div class="form-group">
+
         <button class="btn black btn-primary" type="submit">Search</button>
+
       </div>
       {{!-- <ul id="res-results"></ul> --}}
     </form>

@@ -20,9 +20,10 @@ router.get('/:zip/:location?', async (req, res) => {
         }
         // Extracting data from geocoding response
         const { lat, lng } = results[0].geometry.location;
+
         // Make request to Places API
         const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=8500&type=restaurant&key=${process.env.API_KEY}`;
-        // tested the api in insominia
+        // tested the api in insominia 
         // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.0286,-117.8103&radius=100&type=restaurant&key=
         return axios.get(placesUrl);
       })
@@ -72,7 +73,5 @@ router.get('/:zip/:location?', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-
 
 module.exports = router;

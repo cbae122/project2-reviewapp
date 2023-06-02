@@ -28,3 +28,4 @@ User.hasMany(Place, {
 module.exports = {User, Comment, Place};
 
 
+
