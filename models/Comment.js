@@ -20,11 +20,11 @@ Comment.init(
             key: 'id'
         }
     },
-result_id: {
+place_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-        model: 'result',
+        model: 'place',
         key: 'id'
     }
 },
