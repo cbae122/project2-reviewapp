@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Place } = require('../../models');
 const axios = require('axios');
-
+const withAuth = require('../../utils/auth');
 router.get('/:zip/:location?', async (req, res) => {
   try {
     // const { zipCode, location, radius } = req.body;
@@ -10,7 +10,6 @@ router.get('/:zip/:location?', async (req, res) => {
 
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.API_KEY}`;
     // const parameters = req.body.param1;
-
     return axios.get(geocodingUrl)
       .then(geocodingResponse => {
         // console.log(geocodingResponse.data);

@@ -25,6 +25,11 @@ Comment.init(
       allowNull: false,
       references: {
         model: 'result',
+place_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+        model: 'place',
         key: 'id'
       }
     },
