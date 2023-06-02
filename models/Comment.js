@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-
 class Comment extends Model {}
 
 Comment.init(
@@ -25,10 +24,13 @@ Comment.init(
       allowNull: false,
       references: {
         model: 'result',
-place_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
+        key: 'id'
+      }
+    },
+    place_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
         model: 'place',
         key: 'id'
       }
@@ -40,7 +42,6 @@ place_id: {
         len: [1]
       }
     }
-
   },
   {
     sequelize,
