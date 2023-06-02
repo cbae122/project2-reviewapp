@@ -1,16 +1,14 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Place } = require('../../models');
 const axios = require('axios');
-
+const withAuth = require('../../utils/auth');
 router.get('/:zip/:location?', async (req, res) => {
   try {
     // const { zipCode, location, radius } = req.body;
-
     // const geolocation = await User.create(req.body);
     // https://maps.googleapis.com/maps/api/geocode/json?address="91765"&key=
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.API_KEY}`;
     // const parameters = req.body.param1;
-
     return axios.get(geocodingUrl)
       .then(geocodingResponse => {
         // console.log(geocodingResponse.data);
@@ -48,14 +46,12 @@ router.get('/:zip/:location?', async (req, res) => {
         //   const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${process.env.API_KEY}`;
         //   return axios.get(placeDetailsUrl);
         // });
-
         // return Promise.all(placeDetailsPromises);
       })
       .then(placeDetailsResponses => {
         console.log(placeDetailsResponses);
         // const extractedData = placeDetailsResponses.map(response => {
         //   const { result } = response.data;
-
         //   return {
         //     address: result.formatted_address,
         //     location: result.geometry.location,
@@ -68,7 +64,6 @@ router.get('/:zip/:location?', async (req, res) => {
         //     // })) : null,
         //   };
         // });
-
         res.status(200).json({ placeDetailsResponses });
       })
       .catch(error => {
