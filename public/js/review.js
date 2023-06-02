@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
   const review = document.querySelector('#restaurant-review').value.trim();
   
   if (name && review) {
-    const response = await fetch('/api/projects', {
+    const response = await fetch('/api/review', {
       method: 'POST',
       body: JSON.stringify({ name, review }),
       headers: {
@@ -17,7 +17,7 @@ const newFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert('Failed to create project');
+      alert('Failed to write a Review');
     }
   }
 };
