@@ -61,13 +61,18 @@ var zipcode = document.querySelector('.form-input').value
           
           html +=
           ` <li> 
-          <img src=${img}>
+         
           <div>
-          <h1>${name}<h1>
-          <p>Address: ${address}<p>
-           <p>Rating: ${rating}<p>
-           <input placeholder='Let us know your thought about this place!' class="add-comment"></input>
-           <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}')">Add</button>
+          
+          <img src="${img}" alt="${name} in ${address}">
+          <div>
+              <h4>${name}</h4>
+              <p>${address}</p>
+              <p>${rating}</p>
+          </div>
+      
+           <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+           
            </div>
            </li>
            <script src ="./js/profile.js"></script>
@@ -102,14 +107,14 @@ var zipcode = document.querySelector('.form-input').value
 //   console.log('something failed');
 // }
 
-const searchButton = document.querySelector('search-btn');
+// const searchButton = document.querySelector('search-btn');
 
 
 
-searchButton.addEventListener('click', function(){
-  var position = document.getElementById('food-search').value;
+// searchButton.addEventListener('click', function(){
+//   var position = document.getElementById('food-search').value;
 
-  fetch('/api/google')
+//   fetch('/api/google')
 
   // var axios = require('axios');
 
@@ -126,5 +131,5 @@ searchButton.addEventListener('click', function(){
   // .catch(function (error) {
   //   console.log(error);
   // });
-});
+// });
 
