@@ -26,7 +26,7 @@ searchButton.addEventListener('click', async function (event) {
 
   //   }
   //   final.push(data);()
-  var resResult = document.getElementById('res-results');
+  var resResult = document.getElementById('miko');
 var zipcode = document.querySelector('.form-input').value
   // });
    await fetch(`/api/google/${zipcode}`)
@@ -60,23 +60,37 @@ var zipcode = document.querySelector('.form-input').value
           var img = placeDetailsResponses[i].photoReference;
           
           html +=
-          ` <li> 
+        //   ` <li> 
          
-          <div>
+        //   <div>
           
-          <img src="${img}" alt="${name} in ${address}">
-          <div>
-              <h4>${name}</h4>
-              <p>${address}</p>
-              <p>${rating}</p>
-          </div>
+        //   <img src="${img}" alt="${name} in ${address}">
+        //   <div>
+        //       <h4>${name}</h4>
+        //       <p>${address}</p>
+        //       <p>${rating}</p>
+        //   </div>
       
-           <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+        //    <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
            
-           </div>
-           </li>
-           <script src ="./js/profile.js"></script>
-         `
+        //    </div>
+        //    </li>
+        //    <script src ="./js/profile.js"></script>
+        //  `
+        `<div class ="col s3 m3">
+        <div class="card white">
+          <div class="card-content black-text">
+            <span class="card-title">${name}
+            </span>
+            <p>${address}${rating}</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+          <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+        </div>
+      </div>`
+        
           resResult.innerHTML = html;
         
         } 
