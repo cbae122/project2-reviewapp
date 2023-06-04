@@ -1,12 +1,28 @@
 const router = require('express').Router();
-// const withAuth = require('../utils/auth');
+const { Comment, User } = require('../models');
+const withAuth = require('../utils/auth');
+
+
 
 router.get('/', async (req, res) => {
-  try {
-    res.render('homepage');
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  // try {
+  //   const projectData = await Comment.findAll({
+  //     include: [
+  //       {
+  //         model: User,
+  //         attributes: ['email'],
+  //       },
+  //     ],
+  //   });
+  //   const projects = projectData.map((project) => project.get({ plain: true }));
+
+    res.render('homepage', {
+      // projects,
+      logged_in: req.session.logged_in
+    });
+  //  catch (err) {
+  //   res.status(500).json(err);
+  // }
 });
 
 router.get('/login', (req, res) => {
@@ -16,6 +32,11 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/results', (req, res) => {
+  const data = JSON.parse(atob(req.query.data));
+  res.render('searched', { data });
 });
 
 module.exports = router;
