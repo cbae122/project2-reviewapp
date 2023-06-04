@@ -3,6 +3,15 @@ const User = require('./User');
 const Comment = require('./Comment');
 const Place = require('./Place');
 
+User.hasMany(Place, {
+  foreignKey:'user_id',
+  onDelete: 'CASCADE'
+});
+
+Place.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
 Comment.belongsTo(User, {
   foreignKey: 'user_id'
 });
@@ -19,12 +28,6 @@ Place.hasMany(Comment, {
   foreignKey: 'place_id'
 });
 
-User.hasMany(Place, {
-  foreignKey: 'user_id'
-});
-
-// Result.hasMany(Comment, {
-//   foreignKey: 'result_id'
-// });
+module.exports = {User, Comment, Place};
 
 module.exports = { User, Comment, Place };
