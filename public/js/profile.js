@@ -1,5 +1,5 @@
-async function addToProfile(name, address, rating, comment ) {
-const comment = document.querySelector('.add-comment').value
+ async function addToProfile(name, address, rating) {
+
 
 const response = await fetch(`/api/place`, {
       method: 'POST',
@@ -7,7 +7,8 @@ const response = await fetch(`/api/place`, {
         name,
         address,
         rating,
-        comment
+        
+        
         
         
       }),
@@ -17,10 +18,10 @@ const response = await fetch(`/api/place`, {
     });
   
     if (response.ok) {
-      document.location.replace('/profile');
+      alert('Added to your favorite! Please go to your profile to review this place')
     } else {
-      alert(response.statusText);
+      alert('Please login to continue');
     }
     console.log(address);
   }
-  
+ 

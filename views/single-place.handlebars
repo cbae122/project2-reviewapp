@@ -1,0 +1,42 @@
+<!-- displaying articles -->
+{{#if logged_in}}
+<li>
+    <div>
+        {{!-- <img src="{{place.img}}" alt="{{place.name}} in ${{place.address}}"> --}}
+        <div>
+            <h4>{{place.name}}</h4>
+            <p>Address: {{place.address}}</p>
+            <p>Rating: {{place.rating}}</p>
+        </div>
+<b>{{user.username}}</b> | {{format_date created_at}} |
+<a href="/place/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+    </div>
+    {{!-- <div>
+          
+        <textarea placeholder="Let us know your thought about this place" name="comment-body"> </textarea>
+    </div>
+    <div>
+        <button class="cmt-btn">Add your review</button>
+    </div> --}}
+
+
+<!-- displaying form and comments-->
+<!-- only display if logged in -->
+
+<form class="comment-form">
+  <div>
+    <textarea class="ml-5" name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button class="button is-warning ml-5 mb-5" type="submit">add comment</button>
+  </div>
+  
+</form>
+{{/if}}
+
+{{> comments place.comments}}
+
+{{#if logged_in}}
+<script src="/js/comment.js"></script>
+{{/if}}
