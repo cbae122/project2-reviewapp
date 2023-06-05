@@ -5,30 +5,10 @@ var searchButton = document.querySelector('.btn');
 
 searchButton.addEventListener('click', async function (event) {
   event.preventDefault();
-  //   var name = document.getElementById('food-search').value;
-  // var address =
-  // fetch('/api/google')
-
-  // .then(function (response) {
-  //   return response.json();
-
-  // })
-  // .then(function (data) {
-
-  //   // console.log(final);
-  //   for (var i = 0; i < 4 ; i++) {
-  //     var listItem = document.createElement('li');
-  //     listItem.textContent = data[i].name;
-  //     listItem.textContent = data[i].address;
-  //     listItem.textContent = data[i].rating;
-  //     repoList.appendChild(listItem);
-
-
-  //   }
-  //   final.push(data);()
+ 
   var resResult = document.getElementById('miko');
 var zipcode = document.querySelector('.form-input').value
-  // });
+
    await fetch(`/api/google/${zipcode}`)
     .then(function (response) {
       if (response.ok) {
@@ -38,14 +18,6 @@ var zipcode = document.querySelector('.form-input').value
       }
     })
 
-    // .catch(function (error) {
-    //     Alert('An error occurred while fetching data from Last.fm API.');
-    // });
-
-    // placeDetailsResponses.forEach(function (data) {})
-    // catch (function (err) {
-    //   console.log(err);
-    // })
 
     .then(function ({placeDetailsResponses}) {
       console.log(placeDetailsResponses);
@@ -60,29 +32,16 @@ var zipcode = document.querySelector('.form-input').value
           var img = placeDetailsResponses[i].photoReference;
           
           html +=
-        //   ` <li> 
-         
-        //   <div>
-          
-        //   <img src="${img}" alt="${name} in ${address}">
-        //   <div>
-        //       <h4>${name}</h4>
-        //       <p>${address}</p>
-        //       <p>${rating}</p>
-        //   </div>
-      
-        //    <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
-           
-        //    </div>
-        //    </li>
-        //    <script src ="./js/profile.js"></script>
-        //  `
-        `<div class ="col s3 m3">
+          `
+        <div class ="col s3 m3">
         <div class="card white">
           <div class="card-content black-text">
             <span class="card-title">${name}
             </span>
-            <p>${address}${rating}</p>
+            <p>${address}</p>
+            <p>rating: ${rating}</p>
+           
+        
           </div>
           <div class="card-action">
             <a href="#">This is a link</a>

@@ -2,31 +2,27 @@
     <h2>Your restaurant</h2>
     {{#if places.length}}
 </div>
+ {{#each places as |place| }}
+<div id="card-container">
+    <div class="row" id="miko">
+        <div class="col s3 m3">
+            <div class="card white">
+                <div class="card-content black-text">
+                    <span class="card-title">{{place.name}}
+                    </span>
+                    <p>{{place.address}}</p>
+                    <p>rating: {{place.rating}}</p>
+                </div>
+            </div>
+            <div>
+                <b>{{user.username}}</b> | Added on {{format_date created_at}} |
+                <a href="profile/place/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            </div>
 
-{{#each places as |place| }}
-
-{{!-- {{> place-info place}} --}}
-
-<li>
-    <div>
-        {{!-- <img src="{{place.img}}" alt="{{place.name}} in ${{place.address}}"> --}}
-        <div>
-            <h4>{{place.name}}</h4>
-            <p>Address: {{place.address}}</p>
-            <p>Rating: {{place.rating}}</p>
         </div>
-<b>{{user.username}}</b> | Added on {{format_date created_at}} |
-<a href="profile/place/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
     </div>
-    {{!-- <div>
-          
-        <textarea placeholder="Let us know your thought about this place" name="comment-body"> </textarea>
-    </div> --}}
-    {{!-- <div>
-        <button class="cmt-btn">Add your review</button>
-    </div> --}}
+</div>
 
-</li>
 {{/each}}
 
 
