@@ -27,6 +27,7 @@
         {{else}}
           <li><a href="/login">Login/Sign up</a><li>
 
+
         {{/if}}
         </ul>
         </div>
@@ -40,12 +41,16 @@
         </div>
       {{{body}}}
        
-<ul id="res-results"></ul>
+{{!-- <ul id="res-results"></ul> --}}
+<div id="card-container">
+  <div class="row" id="miko"></div>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       {{#if logged_in}}
-      {{else}}
+    <script src ="./js/logout.js"></script>
       <script src ="./js/search.js"></script>
       <script src ="./js/profile.js"></script>
+      <script src="/js/comment.js"></script>
         {{/if}}
 </body>
 

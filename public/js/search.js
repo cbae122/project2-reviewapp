@@ -1,4 +1,3 @@
-
 var searchButton = document.querySelector('.btn');
 
 // var repoList = document.querySelector('ul');
@@ -26,7 +25,7 @@ searchButton.addEventListener('click', async function (event) {
 
   //   }
   //   final.push(data);()
-  var resResult = document.getElementById('res-results');
+  var resResult = document.getElementById('miko');
 var zipcode = document.querySelector('.form-input').value
   // });
    await fetch(`/api/google/${zipcode}`)
@@ -48,39 +47,55 @@ var zipcode = document.querySelector('.form-input').value
     // })
 
     .then(function ({placeDetailsResponses}) {
-      console.log(placeDetailsResponses);
+      window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
+      // console.log(placeDetailsResponses);
 
-      var html = '<h3>Here are the top 8 places you may like!</h3>'
-      if (placeDetailsResponses.length > 0) {
-        html += '';
-        for (var i = 0; i < 8; i++) {
-          var name = placeDetailsResponses[i].name;
-          var address = placeDetailsResponses[i].address;
-          var rating = placeDetailsResponses[i].rating;
-          var img = placeDetailsResponses[i].photoReference;
+      // var html = '<h3>Here are the top 8 places you may like!</h3>'
+      // if (placeDetailsResponses.length > 0) {
+      //   html += '';
+      //   for (var i = 0; i < 8; i++) {
+      //     var name = placeDetailsResponses[i].name;
+      //     var address = placeDetailsResponses[i].address;
+      //     var rating = placeDetailsResponses[i].rating;
+      //     var img = placeDetailsResponses[i].photoReference;
           
-          html +=
-          ` <li> 
-          <img src=${img}>
-          <div>
-          <h1>${name}<h1>
-          <p>Address: ${address}<p>
-           <p>Rating: ${rating}<p>
-           <input placeholder='Let us know your thought about this place!' class="add-comment"></input>
-           <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}')">Add</button>
-           </div>
-           </li>
-           <script src ="./js/profile.js"></script>
-         `
-          resResult.innerHTML = html;
-        
-        } 
-
-      }
+      //     html +=
+      //   //   ` <li> 
+         
+      //   //   <div>
+          
+      //   //   <img src="${img}" alt="${name} in ${address}">
+      //   //   <div>
+      //   //       <h4>${name}</h4>
+      //   //       <p>${address}</p>
+      //   //       <p>${rating}</p>
+      //   //   </div>
       
+      //   //    <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+           
+      //   //    </div>
+      //   //    </li>
+      //   //    <script src ="./js/profile.js"></script>
+      //   //  `
+      //   `<div class ="col s3 m3">
+      //   <div class="card white">
+      //     <div class="card-content black-text">
+      //       <span class="card-title">${name}
+      //       </span>
+      //       <p>${address}${rating}</p>
+      //     </div>
+      //     <div class="card-action">
+      //       <a href="#">This is a link</a>
+      //     </div>
+      //     <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+      //   </div>
+      // </div>`
+        
+      //     resResult.innerHTML = html;
+      //   } 
+      // }
     }
     )
-
   })
 
 
@@ -102,14 +117,14 @@ var zipcode = document.querySelector('.form-input').value
 //   console.log('something failed');
 // }
 
-const searchButton = document.querySelector('search-btn');
+// const searchButton = document.querySelector('search-btn');
 
 
 
-searchButton.addEventListener('click', function(){
-  var position = document.getElementById('food-search').value;
+// searchButton.addEventListener('click', function(){
+//   var position = document.getElementById('food-search').value;
 
-  fetch('/api/google')
+//   fetch('/api/google')
 
   // var axios = require('axios');
 
@@ -126,5 +141,5 @@ searchButton.addEventListener('click', function(){
   // .catch(function (error) {
   //   console.log(error);
   // });
-});
+// });
 
