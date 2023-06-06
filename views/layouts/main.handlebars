@@ -21,8 +21,11 @@
           <ul id="nav-mobile" class="right">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <li><a href="/profile">Profile</a><li>
-        <li><button class="no-button" id="logout">Logout</button></li>
+        <li>
+        <a href="/profile" class="right brand-logo" style="font-size: 14px; margin-right: 70px;">Profile
+        <i class="material-icons left" style="font-size: 18px;">person</i>
+        </a>
+        <li><a id="logout">Logout</a></li>
         {{else}}
           <li><a href="/login">Login/Sign up</a><li>
  
