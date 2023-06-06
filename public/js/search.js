@@ -4,27 +4,7 @@ var searchButton = document.querySelector('.btn');
 
 searchButton.addEventListener('click', async function (event) {
   event.preventDefault();
-  //   var name = document.getElementById('food-search').value;
-  // var address =
-  // fetch('/api/google')
-
-  // .then(function (response) {
-  //   return response.json();
-
-  // })
-  // .then(function (data) {
-
-  //   // console.log(final);
-  //   for (var i = 0; i < 4 ; i++) {
-  //     var listItem = document.createElement('li');
-  //     listItem.textContent = data[i].name;
-  //     listItem.textContent = data[i].address;
-  //     listItem.textContent = data[i].rating;
-  //     repoList.appendChild(listItem);
-
-
-  //   }
-  //   final.push(data);()
+ 
   var resResult = document.getElementById('miko');
   var zipcode = document.querySelector('.form-input').value;
   // });
@@ -36,15 +16,6 @@ searchButton.addEventListener('click', async function (event) {
         Alert('Failed to retrieve data from Last.fm API.');
       }
     })
-
-  // .catch(function (error) {
-  //     Alert('An error occurred while fetching data from Last.fm API.');
-  // });
-
-  // placeDetailsResponses.forEach(function (data) {})
-  // catch (function (err) {
-  //   console.log(err);
-  // })
 
     .then(function ({placeDetailsResponses}) {
       window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
@@ -99,23 +70,23 @@ searchButton.addEventListener('click', async function (event) {
 });
 
 
-// if (!navigator.geolocation) {
-//   console.error('Your browser doesn\'t support Geolocation');
-// } else {
-//   console.log('OK!');A;
-// }
+if (!navigator.geolocation) {
+  console.error('Your browser doesn\'t support Geolocation');
+} else {
+  console.log('OK!');A;
+}
   
-// navigator.geolocation.getCurrentPosition(success, error);
+navigator.geolocation.getCurrentPosition(success, error);
   
-// function success(position) {
-//   const { latitude, longitude } = position.coords;
+function success(position) {
+  const { latitude, longitude } = position.coords;
   
-//   console.log(`lat: ${latitude} lon ${longitude}`);
-// }
+  console.log(`lat: ${latitude} lon ${longitude}`);
+}
   
-// function error() {
-//   console.log('something failed');
-// }
+function error() {
+  console.log('something failed');
+}
 
 // const searchButton = document.querySelector('search-btn');
 

@@ -10,7 +10,7 @@ router.get('/:zip/:location?', async (req, res) => {
 
     return axios.get(geocodingUrl)
       .then(geocodingResponse => {
-
+  
         // Geocoding API response
         const { results } = geocodingResponse.data;
         console.log(results);
@@ -21,6 +21,7 @@ router.get('/:zip/:location?', async (req, res) => {
         const { lat, lng } = results[0].geometry.location;
         // Make request to Places API
         const placesUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=8500&type=restaurant&key=${process.env.API_KEY}`;
+
 
         return axios.get(placesUrl);
       })
@@ -37,13 +38,26 @@ router.get('/:zip/:location?', async (req, res) => {
             openingHours: place.opening_hours ? place.opening_hours.weekday_text : null,
           };
         });
- 
         return nearbyRestaurants;
 
       })
+
+    //   const photoPromises = nearbyRestaurants.map(restaurant => {
+    //     if (restaurant.photoReference) {
+    //       const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photoReference}&key=${process.env.API_KEY}`;
+    //       return axios.get(photoUrl);
+    //       .then(photoResponse => {
+    //         restaurant.photoUrl = photoResponse.request.res.responseUrl;
+    //       })
+    //     .catch(error => {
+    //       console.log(`Error fetching photo for ${restaurant.name}: ${error.message}`);
+    //     });
+    // }
+    //   })
+
+   
       .then(placeDetailsResponses => {
         console.log(placeDetailsResponses);
-
         
         res.status(200).json({ placeDetailsResponses });
       })
