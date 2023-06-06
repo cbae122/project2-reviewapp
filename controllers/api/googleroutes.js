@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Place } = require('../../models');
 const axios = require('axios');
 const withAuth = require('../../utils/auth');
+const fs = require('fs');
+
 router.get('/:zip/:location?', async (req, res) => {
   try {
 
@@ -10,7 +12,7 @@ router.get('/:zip/:location?', async (req, res) => {
 
     return axios.get(geocodingUrl)
       .then(geocodingResponse => {
-  
+
         // Geocoding API response
         const { results } = geocodingResponse.data;
         console.log(results);
@@ -55,11 +57,49 @@ router.get('/:zip/:location?', async (req, res) => {
     // }
     //   })
 
-   
+    // // function to encode file data to base64 encoded string
+    // function base64_encode(file) {
+    //     // read binary data
+    //     var bitmap = fs.readFileSync(file);
+    //     // convert binary data to base64 encoded string
+    //     return new Buffer(bitmap).toString('base64');
+    // }
+
+    //     // function to create file from base64 encoded string
+    // function base64_decode(base64str, file) {
+    //   // create buffer object from base64 encoded string, it is important to tell the constructor that the string is base64 encoded
+    //  var bitmap = new Buffer(base64str, 'base64');
+    //  // write buffer to file
+    //  fs.writeFileSync(file, bitmap);
+    //  console.log('******** File created from base64 encoded string ********');
+    // }
+
       .then(placeDetailsResponses => {
-        console.log(placeDetailsResponses);
-        
-        res.status(200).json({ placeDetailsResponses });
+        // console.log(placeDetailsResponses);
+        const photos = [];
+        const encoded = [];
+
+        placeDetailsResponses.forEach(async place => {
+          let ref = place.photoReference;
+          if (ref) {
+            const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
+            let photo = await axios.get(photoUrl, {
+              responseType: 'arraybuffer',
+            });
+            // const photoData = Buffer.from(photo.data, 'binary').toString('base64');
+            console.log(photo.data);
+            photos.push(photo.data);
+          }
+          // photos.forEach(file => {
+          //   let bitmap = fs.readFileSync(file);
+          //   encoded.push (new Buffer(bitmap).toString('base64'));
+          // });
+          
+          // res.json(photos[0]);
+
+        });
+        res.status(200).json({ placeDetailsResponses, photos: photos[0] });
+  
       })
       .catch(error => {
         res.status(500).json({ error: error.message });
