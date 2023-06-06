@@ -74,32 +74,58 @@ router.get('/:zip/:location?', async (req, res) => {
     //  console.log('******** File created from base64 encoded string ********');
     // }
 
+
       .then(placeDetailsResponses => {
         // console.log(placeDetailsResponses);
         const photos = [];
         const encoded = [];
+        const requests = [];
 
         placeDetailsResponses.forEach(async place => {
           let ref = place.photoReference;
           if (ref) {
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
-            let photo = await axios.get(photoUrl, {
-              responseType: 'arraybuffer',
-            });
+            // let photo = await axios.get(photoUrl, {
+            //   responseType: 'arraybuffer',
+            // });
             // const photoData = Buffer.from(photo.data, 'binary').toString('base64');
-            console.log(photo.data);
-            photos.push(photo.data);
+            // // console.log(photo.data);
+            // photos.push(photoData);
+            // place.base_64_photo = photoData;
+            // console.log(photoData);
+            // res.send(photoData);
+
+            requests.push(
+              axios.get(photoUrl, {
+                responseType: 'arraybuffer',
+              })
+            );
           }
           // photos.forEach(file => {
           //   let bitmap = fs.readFileSync(file);
           //   encoded.push (new Buffer(bitmap).toString('base64'));
           // });
-          
+
           // res.json(photos[0]);
 
+          
+          
         });
-        res.status(200).json({ placeDetailsResponses, photos: photos[0] });
-  
+
+        Promise.all(requests)
+          .then((responseArray) => {
+            console.log('Promises plural resolved');
+            // console.log(responseArray);
+
+            responseArray.forEach((response, index) => {
+              const photo = Buffer.from(response.data, 'binary').toString('base64');
+              // photos.push(photo);
+              console.log(photo);
+              placeDetailsResponses[index].photoBase64 = photo;
+            });
+            // res.json({message: 'end'});
+            res.status(200).json({ placeDetailsResponses });
+          });
       })
       .catch(error => {
         res.status(500).json({ error: error.message });
@@ -108,5 +134,6 @@ router.get('/:zip/:location?', async (req, res) => {
     res.status(400).json(err.message);
   }
 });
+
 
 module.exports = router;
