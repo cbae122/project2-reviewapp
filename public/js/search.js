@@ -30,28 +30,29 @@ var zipcode = document.querySelector('.form-input').value
           var address = placeDetailsResponses[i].address;
           var rating = placeDetailsResponses[i].rating;
           var img = placeDetailsResponses[i].photoReference;
-          
+          name.replace("'", "&lsquo;")
+          console.log(name);
           html +=
           `
         <div class ="col s3 m3">
         <div class="card white">
           <div class="card-content black-text">
-            <span class="card-title">${name}
+            <span class="card-title">${name} 
             </span>
-            <p>${address}</p>
-            <p>rating: ${rating}</p>
+            <p>Address: ${address}</p>
+            <p>Rating: ${rating}</p>
            
-        
+    
           </div>
           <div class="card-action">
             <a href="#">This is a link</a>
           </div>
-          <button type=submit class="profile" onclick="addToProfile('${name}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+          <button type=submit class="profile" onclick="addToProfile('${name.replace("'", "&lsquo;")}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
         </div>
       </div>`
         
           resResult.innerHTML = html;
-        
+         
         } 
 
       }
