@@ -40,7 +40,9 @@ var zipcode = document.querySelector('.form-input').value
             <span class="card-title">${name} 
             </span>
             <p>Address: ${address}</p>
-            <p>Rating: ${rating}</p>
+            <p class="rating">Rating: ${rating}
+            
+            </p>
            
     
           </div>
@@ -52,7 +54,7 @@ var zipcode = document.querySelector('.form-input').value
       </div>`
         
           resResult.innerHTML = html;
-         
+          
         } 
 
       }
@@ -62,6 +64,29 @@ var zipcode = document.querySelector('.form-input').value
 
   })
 
+  var ratingRes = document.getElementById('miko')
+  rating = yellow = (Math.round(3*2)/2).toFixed(1);
+  white = 5 - rating;
+  var output = '<div title="'+rating+'">';
+
+//output full yellow stars
+while (yellow >= 1) {
+    output += '<i class="fa fa-star text-yellow"></i>';
+    yellow--;
+}
+//what is left can either be .5 or 0... if .5 output half yellow star
+if (yellow == .5) {
+    output += '<i class="fa fa-star-half-o text-yellow"></i>';
+}
+//output remaining full white stars
+while (white >= 1) {
+    output += '<i class="fa fa-star-o text-yellow"></i>';
+    white--;
+}
+output += '</div>';
+ratingRes.innerHTML = output
+
+;
 
 // if (!navigator.geolocation) {
 //   console.error('Your browser doesn\'t support Geolocation');
