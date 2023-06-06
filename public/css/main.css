@@ -34,3 +34,31 @@ span.stars, span.stars span {
 span.stars span {
     background-position: 0 0;
 }
+
+.image-container{
+	background-size: cover;
+}
+
+
+
+.search-bar{
+	text-align:center;
+	background-color: aliceblue;
+}
+
+.btn-primary{
+	display: flex;
+	text-align:center;
+}
+
+.form-group{
+	text-align: center;
+}
+
+.row{
+	font-family: 'Lobster', cursive;
+}
+
+.result{
+	font-family: initial;
+}
