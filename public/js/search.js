@@ -1,4 +1,3 @@
-
 var searchButton = document.querySelector('.btn');
 
 // var repoList = document.querySelector('ul');
@@ -20,7 +19,8 @@ var zipcode = document.querySelector('.form-input').value
 
 
     .then(function ({placeDetailsResponses}) {
-      console.log(placeDetailsResponses);
+      window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
+      // console.log(placeDetailsResponses);
 
       var html = '<h3>Here are the top 8 places you may like!</h3>'
       if (placeDetailsResponses.length > 0) {
@@ -61,7 +61,6 @@ var zipcode = document.querySelector('.form-input').value
       
     }
     )
-
   })
 
   var ratingRes = document.getElementById('miko')

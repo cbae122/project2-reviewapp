@@ -22,4 +22,9 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/results', (req, res) => {
+  const data = JSON.parse(atob(req.query.data));
+  res.render('searched', { data });
+});
+
 module.exports = router;
