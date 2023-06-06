@@ -33,7 +33,7 @@ body {
 
 .search-bar{
 	text-align:center;
-	/* background-color: aliceblue; */
+	background-color: aliceblue;
 }
 
 .btn-primary{
@@ -43,4 +43,12 @@ body {
 
 .form-group{
 	text-align: center;
+}
+
+.row{
+	font-family: 'Lobster', cursive;
+}
+
+.result{
+	font-family: initial;
 }
