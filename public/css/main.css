@@ -25,9 +25,22 @@ body {
 	background-color:black;
 }
 
-.search-results{
-display:flex;
-/* justify-content: center; */
-margin-bottom: 1rem;
+.image-container{
+	background-size: cover;
 }
 
+
+
+.search-bar{
+	text-align:center;
+	/* background-color: aliceblue; */
+}
+
+.btn-primary{
+	display: flex;
+	text-align:center;
+}
+
+.form-group{
+	text-align: center;
+}
