@@ -82,6 +82,3 @@ function success(position) {
 function error() {
   console.log('something failed');
 }
-
-
-
