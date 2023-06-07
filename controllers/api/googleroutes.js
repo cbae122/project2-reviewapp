@@ -6,8 +6,7 @@ const fs = require('fs');
 
 router.get('/:zip/:location?', async (req, res) => {
   try {
-
-
+    
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.params.zip}&key=${process.env.API_KEY}`;
 
     return axios.get(geocodingUrl)
@@ -45,7 +44,6 @@ router.get('/:zip/:location?', async (req, res) => {
       })
       .then(placeDetailsResponses => {
         const photos = [];
-        const encoded = [];
         const requests = [];
 
         placeDetailsResponses.forEach(async place => {
@@ -68,11 +66,11 @@ router.get('/:zip/:location?', async (req, res) => {
             responseArray.forEach((response, index) => {
               const photo = Buffer.from(response.data, 'binary').toString('base64');
               photos.push(photo);
-              console.log(photo);
+              // console.log(photo);
               placeDetailsResponses[index].photoBase64 = photo;
             });
             // res.json({message: 'end'});
-            res.status(200).json({ placeDetailsResponses });
+            res.status(200).json({ placeDetailsResponses, photos });
           });
       })
       .catch(error => {

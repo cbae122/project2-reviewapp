@@ -1,4 +1,6 @@
 var searchButton = document.querySelector('.btn');
+// let ref = place.photoReference;
+// const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
 
 var starRating = [];
 // var repoList = document.querySelector('ul');
@@ -14,7 +16,7 @@ searchButton.addEventListener('click', async function (event) {
       if (response.ok) {
         return response.json();
       } else {
-        Alert('Failed to retrieve data from Last.fm API.');
+        Alert ('Failed to retrieve data from Last.fm API.');
       }
     })
 
@@ -31,44 +33,30 @@ searchButton.addEventListener('click', async function (event) {
           var name = placeDetailsResponses[i].name;
           var address = placeDetailsResponses[i].address;
           var rating = placeDetailsResponses[i].rating;
-          var img = placeDetailsResponses[i].photoReference;
+          var img = placeDetailsResponses[i].photoBase64; // Use the converted base64 image data
           name.replace('\'', '&lsquo;');
-          // console.log(name);
+        
           html +=
           `
-        <div class ="col s3 m3">
-        <div class="card white">
-          <div class="card-content black-text">
-            <span class="card-title">${name} 
-            </span>
-            <p>Address: ${address}</p>
-            <p class="Srating">Rating: ${rating}
-           
-            <span class="material-symbols-outlined">
-verified
-</span>
-           
-            
-            </p>
-           
-    
+          <div class="col s3 m3">
+            <div class="card white">
+              <div class="card-content black-text">
+                <span class="card-title">${name}</span>
+                <p>Address: ${address}</p>
+                <p>Rating: ${rating}</p>
+              </div>
+              <div class="card-image">
+                <img src="data:image/jpeg;base64,${img}" alt="${name}">
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+              <button type="submit" class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+            </div>
           </div>
-         
-          <button type=submit class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
-        </div>
-      </div>`;
+          `;
         
           resResult.innerHTML = html;
-         
-          
-        
-
-            
-              
-              
-      
-              
-       
         }
 
      
