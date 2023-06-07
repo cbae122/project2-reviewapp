@@ -4650,3 +4650,17 @@ POST /api/users/login 200 174 - 66.680 ms
 GET / 200 3029 - 4.479 ms
 =======
 >>>>>>> 281805dddbc3b0a73f2f54f4fac5f2da81d26f55
+GET / 200 2695 - 171.350 ms
+GET /api/google/Diamond%20Bar 200 5823 - 637.919 ms
+GET /api/google/Lahore 200 5962 - 398.366 ms
+GET /api/google/Seattle 200 5741 - 384.217 ms
+GET / 304 - - 31.774 ms
+GET /api/google/Diamond%20Bar 200 1188675 - 2181.561 ms
+GET /api/google/Diamond%20Bar 200 1188675 - 1041.657 ms
+GET /api/google/Diamond%20Bar 200 1188675 - 3866.718 ms
+GET /login 304 - - 11.910 ms
+POST /api/users 400 882 - 79.007 ms
+POST /api/users 400 879 - 63.500 ms
+GET /login 304 - - 9.418 ms
+GET / 304 - - 6.900 ms
+GET /api/google/Diamond%20Bar 200 1188675 - 1097.996 ms

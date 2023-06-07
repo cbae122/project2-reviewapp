@@ -7,16 +7,16 @@ async function addToProfile(name, address, rating) {
       name,
       address,
       rating,
-
-
-
-
+        
+        
+        
+        
     }),
     headers: {
       'Content-Type': 'application/json'
     }
   });
-
+  
   if (response.ok) {
     alert('Added to your favorite! Please go to your profile to review this place');
   } else {
@@ -24,3 +24,4 @@ async function addToProfile(name, address, rating) {
   }
   console.log(address);
 }
+ 

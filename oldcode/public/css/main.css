@@ -1,0 +1,105 @@
+/* REMOVE THIS AND ADD YOUR OWN CSS AS NEEDED */
+* /*{
+	outline: red dashed 2px;
+} */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.icon-text .material-icons {
+    margin-left: 5px;
+}
+
+.icon-text .brand-logo {
+	display: flex;
+	align-items: center;
+}
+
+body {
+	font-family: 'Times New Roman', Times, serif
+}
+
+.nav-wrapper {
+	background-color:black;
+    margin: auto;
+    
+}
+span.stars, span.stars span {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+.image-container{
+	background-size: cover;
+    width: 100%;
+   height: 400px;
+   margin-top: -40px;
+}
+
+
+
+.search-bar{
+	text-align:center;
+	background-color: aliceblue;
+    margin-top: 100px;
+}
+
+.btn-primary{
+	display: flex;
+	text-align:center;
+}
+
+.form-group{
+	text-align: center;
+  
+}
+
+.row{
+	font-family: 'Lobster', cursive;
+}
+
+.result{
+	font-family: initial;
+}
+.btn {
+    margin-bottom: 100px;
+}
+
+.row {
+    margin-bottom: 500px;
+}
+
+.form-search {
+text-align: center;
+}
+
+.fill {
+    color: #e6e6e6;
+}
+.profile {
+    padding: 5px;
+    margin-right: 5px;
+}
+.logout {
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+.material-symbols-outlined {
+    padding: 3px;
+}

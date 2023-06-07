@@ -1,0 +1,34 @@
+<div>
+    <h2>Your restaurant</h2>
+    {{#if places.length}}
+</div>
+ {{#each places as |place| }}
+<div id="card-container">
+    <div class="row" id="miko">
+        <div class="col s3 m3">
+            <div class="card white">
+                <div class="card-content black-text">
+                    <span class="card-title">{{place.name}}
+                    </span>
+                    <p>{{place.address}}</p>
+                    <p>rating: {{place.rating}}</p>
+                </div>
+            </div>
+            <div>
+                <b>{{user.username}}</b> | Added on {{format_date created_at}} |
+                <a href="profile/place/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{/each}}
+
+
+{{else}}
+
+<h5>You don't have any restaurants</h5>
+{{/if}}
+
+<script src="./js/comment.js"></script>

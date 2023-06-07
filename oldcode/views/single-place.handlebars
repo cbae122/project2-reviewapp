@@ -1,0 +1,36 @@
+<!-- displaying articles -->
+{{#if logged_in}}
+<div id="card-container">
+  <div class="row" id="miko">
+    <div class="col s3 m3">
+      <div class="card white">
+        <div class="card-content black-text">
+          <span class="card-title">{{place.name}}
+          </span>
+          <p>{{place.address}}</p>
+          <p>rating: {{place.rating}}</p>
+        </div>
+      </div>
+      
+      <form class="comment-form">
+        <div>
+          <textarea class="ml-5" name="comment-body"></textarea>
+        </div>
+
+        <div>
+          <button class="button is-warning ml-5 mb-5" type="submit">add comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{{/if}}
+
+{{> comments place.comments}}
+
+{{#if logged_in}}
+<script src="/js/comment.js"></script>
+<script src="./js/logout.js"></script>
+{{/if}}

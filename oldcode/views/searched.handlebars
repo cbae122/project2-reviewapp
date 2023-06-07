@@ -1,0 +1,21 @@
+<ul id="res-results"></ul>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Results!</h2>
+        <div class="row mb-4 project">
+            <div class="col-md-5">
+                <ul id="res-results">
+                    {{#each data as |place|}}
+                    <p>{{place.photoReference}}</p>
+                    <p>Restuarant Name: {{place.name}}</p>
+                    <p>Address: {{place.address}}</p>
+                    <p>Rating: {{place.rating}}</p>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/profile.js"></script>
