@@ -6,33 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FINDine</title>
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
-
+</head>
 <body>
   <div class="flex-column justify-space-around">
    
   <header>
       <nav>
         <div class="nav-wrapper">
-          <a href="/" class="left brand-logo">What are you craving?
-          <i class="material-icons right"></i>
+          <a href="/" class="left brand-logo">
+          <i class="material-icons right">local_dining</i>FINDine
           </a>
           <ul id="nav-mobile" class="right">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <li class ="profile">
-<a class ="pro" href="/profile">Profile<span class="material-symbols-outlined">
-account_circle</span></a></li>
-        <li class ="logout"><button class="no-button" id="logout">Logout<span class="material-symbols-outlined">
-logout
-</span></button></li>
+<a href="/profile" class="brand-logo">
+<i class="material-icons">person</i>Profile</a></li>
+        <li><a class="logout" id="logout">Log Out<span class="material-icons"></span></a></li>
         {{else}}
-          <li><a href="/login">Login/Sign up<span class="material-symbols-outlined">
-login
-</span></a><li>
+          <li><a href="/login">Log In/Sign up<span class="material-icons"></span></a><li>
  
 
         {{/if}}
