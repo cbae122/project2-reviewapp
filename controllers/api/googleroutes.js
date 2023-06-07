@@ -43,11 +43,9 @@ router.get('/:zip/:location?', async (req, res) => {
         return nearbyRestaurants;
 
       })
-
       .then(placeDetailsResponses => {
-        // console.log(placeDetailsResponses);
         const photos = [];
-        // const encoded = [];
+        const encoded = [];
         const requests = [];
 
         placeDetailsResponses.forEach(async place => {
@@ -59,8 +57,7 @@ router.get('/:zip/:location?', async (req, res) => {
                 responseType: 'arraybuffer',
               })
             );
-          }
-
+          }          
         });
 
         Promise.all(requests)
@@ -70,7 +67,7 @@ router.get('/:zip/:location?', async (req, res) => {
 
             responseArray.forEach((response, index) => {
               const photo = Buffer.from(response.data, 'binary').toString('base64');
-              // photos.push(photo);
+              photos.push(photo);
               console.log(photo);
               placeDetailsResponses[index].photoBase64 = photo;
             });

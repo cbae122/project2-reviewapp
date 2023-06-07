@@ -16,9 +16,10 @@ searchButton.addEventListener('click', async function (event) {
         Alert('Failed to retrieve data from Last.fm API.');
       }
     })
+
+
     .then(function ({placeDetailsResponses}) {
-      window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
-      // console.log(placeDetailsResponses);
+      console.log(placeDetailsResponses);
 
       var html = '<h3>Here are the top 8 places you may like!</h3>';
       if (placeDetailsResponses.length > 0) {
@@ -41,6 +42,8 @@ searchButton.addEventListener('click', async function (event) {
           </div>
           <div class="card-image">
              <img src="data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(imgData)))}" alt="${name}">
+                </div>
+              </div>    
           </div>
           <div class="card-action">
             <a href="#">This is a link</a>
