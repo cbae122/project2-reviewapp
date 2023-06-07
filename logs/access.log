@@ -4701,3 +4701,5 @@ GET /? 304 - - 27.392 ms
 GET /api/google/Diamond%20Bar 200 2371258 - 542.223 ms
 GET /api/google/Long%20beach 200 2533346 - 980.774 ms
 GET /api/google/Long%20beach 200 2533346 - 684.672 ms
+GET /? 304 - - 67.458 ms
+GET /api/google/Diamond%20Bar 200 2371258 - 727.743 ms

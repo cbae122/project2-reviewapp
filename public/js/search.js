@@ -1,10 +1,5 @@
 var searchButton = document.querySelector('.btn');
-// let ref = place.photoReference;
-// const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
-
 var starRating = [];
-// var repoList = document.querySelector('ul');
-
 searchButton.addEventListener('click', async function (event) {
   event.preventDefault();
  
@@ -22,9 +17,6 @@ searchButton.addEventListener('click', async function (event) {
 
 
     .then(function ({placeDetailsResponses}) {
-      // window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
-      // console.log(placeDetailsResponses);
-
       var html = '<h3 class="center-align amber-text text-lighten-2">Here are the top 8 places you may like!</h3>';
       if (placeDetailsResponses.length > 0) {
         
@@ -33,7 +25,7 @@ searchButton.addEventListener('click', async function (event) {
           var name = placeDetailsResponses[i].name;
           var address = placeDetailsResponses[i].address;
           var rating = placeDetailsResponses[i].rating;
-          var img = placeDetailsResponses[i].photoBase64; // Use the converted base64 image data
+          var img = placeDetailsResponses[i].photoBase64;
           name.replace('\'', '&lsquo;');
         
           html +=
