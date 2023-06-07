@@ -7,6 +7,7 @@ const response = await fetch(`/api/place`, {
         name,
         address,
         rating,
+     
         
         
         
@@ -20,8 +21,9 @@ const response = await fetch(`/api/place`, {
     if (response.ok) {
       alert('Added to your favorite! Please go to your profile to review this place')
     } else {
-      alert('Please login to continue');
+      alert('ERROR');
+      
     }
-    console.log(address);
+    // console.log(img);
   }
  
