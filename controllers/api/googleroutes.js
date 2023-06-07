@@ -44,37 +44,6 @@ router.get('/:zip/:location?', async (req, res) => {
 
       })
 
-    //   const photoPromises = nearbyRestaurants.map(restaurant => {
-    //     if (restaurant.photoReference) {
-    //       const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${restaurant.photoReference}&key=${process.env.API_KEY}`;
-    //       return axios.get(photoUrl);
-    //       .then(photoResponse => {
-    //         restaurant.photoUrl = photoResponse.request.res.responseUrl;
-    //       })
-    //     .catch(error => {
-    //       console.log(`Error fetching photo for ${restaurant.name}: ${error.message}`);
-    //     });
-    // }
-    //   })
-
-    // // function to encode file data to base64 encoded string
-    // function base64_encode(file) {
-    //     // read binary data
-    //     var bitmap = fs.readFileSync(file);
-    //     // convert binary data to base64 encoded string
-    //     return new Buffer(bitmap).toString('base64');
-    // }
-
-    //     // function to create file from base64 encoded string
-    // function base64_decode(base64str, file) {
-    //   // create buffer object from base64 encoded string, it is important to tell the constructor that the string is base64 encoded
-    //  var bitmap = new Buffer(base64str, 'base64');
-    //  // write buffer to file
-    //  fs.writeFileSync(file, bitmap);
-    //  console.log('******** File created from base64 encoded string ********');
-    // }
-
-
       .then(placeDetailsResponses => {
         // console.log(placeDetailsResponses);
         const photos = [];
@@ -101,15 +70,7 @@ router.get('/:zip/:location?', async (req, res) => {
               })
             );
           }
-          // photos.forEach(file => {
-          //   let bitmap = fs.readFileSync(file);
-          //   encoded.push (new Buffer(bitmap).toString('base64'));
-          // });
 
-          // res.json(photos[0]);
-
-          
-          
         });
 
         Promise.all(requests)
