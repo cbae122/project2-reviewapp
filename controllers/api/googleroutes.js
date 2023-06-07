@@ -47,23 +47,13 @@ router.get('/:zip/:location?', async (req, res) => {
       .then(placeDetailsResponses => {
         // console.log(placeDetailsResponses);
         const photos = [];
-        const encoded = [];
+        // const encoded = [];
         const requests = [];
 
         placeDetailsResponses.forEach(async place => {
           let ref = place.photoReference;
           if (ref) {
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
-            // let photo = await axios.get(photoUrl, {
-            //   responseType: 'arraybuffer',
-            // });
-            // const photoData = Buffer.from(photo.data, 'binary').toString('base64');
-            // // console.log(photo.data);
-            // photos.push(photoData);
-            // place.base_64_photo = photoData;
-            // console.log(photoData);
-            // res.send(photoData);
-
             requests.push(
               axios.get(photoUrl, {
                 responseType: 'arraybuffer',

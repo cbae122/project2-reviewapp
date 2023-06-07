@@ -3379,3 +3379,16 @@ GET /results?data=W3sibmFtZSI6IkJvbWJheSBUYW5kb29yaSAmIEJhbnF1ZXQiLCJhZGRyZXNzIj
 GET / 304 - - 10.591 ms
 GET /layouts/images/Screen%20Shot%202023-06-01%20at%208.43.21%20PM.png 404 204 - 0.392 ms
 GET /login 200 2000 - 67.592 ms
+GET / 500 1824 - 29.902 ms
+GET /login 304 - - 21.748 ms
+GET /login 304 - - 10.076 ms
+GET / 200 3088 - 25.277 ms
+GET / 200 3088 - 7.434 ms
+GET /? 200 3088 - 7.804 ms
+GET /? 200 3089 - 8.040 ms
+GET /? 200 3089 - 11.066 ms
+GET /? 200 3089 - 30.765 ms
+GET /? 200 3089 - 28.545 ms
+GET / 200 3089 - 10.205 ms
+GET /? 200 3089 - 10.417 ms
+GET /? 200 3089 - 11.404 ms

@@ -16,10 +16,9 @@ searchButton.addEventListener('click', async function (event) {
         Alert('Failed to retrieve data from Last.fm API.');
       }
     })
-
-
     .then(function ({placeDetailsResponses}) {
-      console.log(placeDetailsResponses);
+      window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
+      // console.log(placeDetailsResponses);
 
       var html = '<h3>Here are the top 8 places you may like!</h3>';
       if (placeDetailsResponses.length > 0) {
@@ -36,22 +35,20 @@ searchButton.addEventListener('click', async function (event) {
         <div class ="col s3 m3">
         <div class="card white">
           <div class="card-content black-text">
-            <span class="card-title">${name} 
-            </span>
+            <span class="card-title">${name}</span>
             <p>Address: ${address}</p>
             <p>Rating: ${rating}</p>
-            </div>
-                <div class="card-image">
-                  <img src="data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(imgData)))}" alt="${name}">
-                </div>
-              </div>    
+          </div>
+          <div class="card-image">
+             <img src="data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(imgData)))}" alt="${name}">
           </div>
           <div class="card-action">
             <a href="#">This is a link</a>
           </div>
           <button type=submit class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
         </div>
-      </div>`;
+      </div>
+      `;
         
           resResult.innerHTML = html;
          
