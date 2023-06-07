@@ -36,7 +36,7 @@ var zipcode = document.querySelector('.form-search').value
           // console.log(name);
           html +=
           `
-        <div class ="col s3 m3">
+        <div class ="col s12 m6 l3">
         <div class="card white">
           <div class="card-content black-text">
             <span class="card-title">${name} 
