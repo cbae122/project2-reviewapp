@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
             name: req.body.name,
             address: req.body.address,
             rating: req.body.rating,
-            img: req.body.img,
+            // img: req.body.img,
             user_id: req.session.user_id
             // img: req.body.rating
         });
@@ -64,7 +64,8 @@ router.get('/:id', (req, res) => {
         'name',
         'created_at',
         'address',
-        'rating'
+        'rating', 
+        // 'img'
       ],
       include: [
         // include the Comment model here:
