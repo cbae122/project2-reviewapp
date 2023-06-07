@@ -1,5 +1,6 @@
 var searchButton = document.querySelector('.btn');
 var starRating = [];
+
 searchButton.addEventListener('click', async function (event) {
   event.preventDefault();
  
@@ -17,6 +18,8 @@ searchButton.addEventListener('click', async function (event) {
 
 
     .then(function ({placeDetailsResponses}) {
+
+
       var html = '<h3 class="center-align amber-text text-lighten-2">Here are the top 8 places you may like!</h3>';
       if (placeDetailsResponses.length > 0) {
         
@@ -59,7 +62,7 @@ searchButton.addEventListener('click', async function (event) {
 if (!navigator.geolocation) {
   console.error('Your browser doesn\'t support Geolocation');
 } else {
-  console.log('OK!');
+  console.log('OK!');A;
 }
   
 navigator.geolocation.getCurrentPosition(success, error);
