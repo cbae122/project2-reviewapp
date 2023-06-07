@@ -1,12 +1,13 @@
 var searchButton = document.querySelector('.btn');
 
+var starRating = [];
 // var repoList = document.querySelector('ul');
 
 searchButton.addEventListener('click', async function (event) {
   event.preventDefault();
  
   var resResult = document.getElementById('miko');
-  var zipcode = document.querySelector('.form-input').value;
+  var zipcode = document.querySelector('.form-search').value;
 
   await fetch(`/api/google/${zipcode}`)
     .then(function (response) {
@@ -19,10 +20,12 @@ searchButton.addEventListener('click', async function (event) {
 
 
     .then(function ({placeDetailsResponses}) {
-      console.log(placeDetailsResponses);
+      // window.location.replace(`/results?data=${btoa(JSON.stringify(placeDetailsResponses))}`);
+      // console.log(placeDetailsResponses);
 
-      var html = '<h3>Here are the top 8 places you may like!</h3>';
+      var html = '<h3 class="center-align amber-text text-lighten-2">Here are the top 8 places you may like!</h3>';
       if (placeDetailsResponses.length > 0) {
+        
         html += '';
         for (var i = 0; i < 8; i++) {
           var name = placeDetailsResponses[i].name;
@@ -30,45 +33,39 @@ searchButton.addEventListener('click', async function (event) {
           var rating = placeDetailsResponses[i].rating;
           var img = placeDetailsResponses[i].photoReference;
           name.replace('\'', '&lsquo;');
-          console.log(name);
+          // console.log(name);
           html +=
           `
-        <div class ="col s3 m3">
-        <div class="card white">
-          <div class="card-content black-text">
-            <span class="card-title">${name}</span>
-            <p>Address: ${address}</p>
-            <p>Rating: ${rating}</p>
+          <div class="col s12 m6 l3">
+            <div class="card white">
+              <div class="card-content black-text">
+                <span class="card-title">${name}</span>
+                <p>Address: ${address}</p>
+                <p>Rating: ${rating}</p>
+              </div>
+              <div class="card-image">
+                <img src="data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(img)))}" alt="${name}">
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+              <button type="submit" class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+            </div>
           </div>
-          <div class="card-image">
-             <img src="data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(imgData)))}" alt="${name}">
-                </div>
-              </div>    
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-          </div>
-          <button type=submit class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
-        </div>
-      </div>
-      `;
+          `;
         
           resResult.innerHTML = html;
-         
-        } 
-
-      }
-      
+        }
+      }   
     }
     );
-
 });
 
 
 if (!navigator.geolocation) {
   console.error('Your browser doesn\'t support Geolocation');
 } else {
-  console.log('OK!');A;
+  console.log('OK!');
 }
   
 navigator.geolocation.getCurrentPosition(success, error);

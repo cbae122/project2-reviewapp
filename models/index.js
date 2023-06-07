@@ -1,6 +1,7 @@
 const User = require('./User');
 // const Result = require('./Result');
 const Comment = require('./Comment');
+
 const Place = require('./Place');
 
 User.hasMany(Place, {
@@ -30,4 +31,3 @@ Place.hasMany(Comment, {
 
 module.exports = {User, Comment, Place};
 
-module.exports = { User, Comment, Place };

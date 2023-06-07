@@ -6,9 +6,6 @@ const geolocation = require('./googleroutes');
 const commentRoutes = require('./commentRoutes');
 const placeRoutes = require('./placeRoutes');
 
-
-
-router.use('/google', geolocation);
 router.use('/place', placeRoutes);
 router.use('/google', geolocation);
 router.use('/users', userRoutes);
