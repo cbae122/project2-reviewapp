@@ -58,13 +58,6 @@ searchButton.addEventListener('click', async function (event) {
         
           resResult.innerHTML = html;
         }
-
-     
-
-
-    
-
-
       }   
     }
     );
@@ -74,7 +67,7 @@ searchButton.addEventListener('click', async function (event) {
 if (!navigator.geolocation) {
   console.error('Your browser doesn\'t support Geolocation');
 } else {
-  console.log('OK!');A;
+  console.log('OK!');
 }
   
 navigator.geolocation.getCurrentPosition(success, error);
