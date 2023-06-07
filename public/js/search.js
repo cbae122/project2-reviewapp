@@ -28,30 +28,51 @@ searchButton.addEventListener('click', async function (event) {
           var name = placeDetailsResponses[i].name;
           var address = placeDetailsResponses[i].address;
           var rating = placeDetailsResponses[i].rating;
-          var img = placeDetailsResponses[i].photoBase64;
+          var img = placeDetailsResponses[i].photoReference;
           name.replace('\'', '&lsquo;');
-        
+    
           html +=
           `
-          <div class="col s3 m3">
-            <div class="card white">
-              <div class="card-content black-text">
-                <span class="card-title">${name}</span>
-                <p>Address: ${address}</p>
-                <p>Rating: ${rating}</p>
-              </div>
-              <div class="card-image" style="max-height: 200px;">
-                <img src="data:image/jpeg;base64,${img}" alt="${name}" style="max-width: 100%; object-fit: cover;">
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
-              <button type="submit" class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
-            </div>
+        <div class ="col s12 m6 l3">
+        <div class="card white">
+          <div class="card-content black-text frame">
+          <div class="card-image">
+                <img src="data:image/jpeg;base64,${img}" alt="${name}">
+              </div> 
+          <span class="card-title">${name} 
+            </span>
+            <p>Address: ${address}</p>
+            <p class="Srating">Rating: ${rating}
+           
+            <span class="material-symbols-outlined">
+verified
+</span>
+           
+            
+            </p>
+           <div>
+           <a href= "http://google.com/maps/place/${address.replace(' ', '+')}" target="_blank">Get Direction<span class="material-symbols-outlined">
+           navigation
+           </span></a>
+           </div>
+    
           </div>
-          `;
+         
+          <button type=submit class="profile" onclick="addToProfile('${name.replace('\'', '&lsquo;')}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+        </div>
+      </div>`;
         
           resResult.innerHTML = html;
+         
+       
+        
+
+            
+              
+              
+      
+              
+       
         }
       }   
     }

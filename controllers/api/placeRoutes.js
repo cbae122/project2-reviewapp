@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
       name: req.body.name,
       address: req.body.address,
       rating: req.body.rating,
-      img: req.body.img,
+      // img: req.body.img,
       user_id: req.session.user_id
       // img: req.body.rating
     });
@@ -75,6 +75,27 @@ router.get('/:id', (req, res) => {
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'place_id', 'user_id', 'created_at'],
+    Place.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'name',
+        'created_at',
+        'address',
+        'rating', 
+        // 'img'
+      ],
+      include: [
+        // include the Comment model here:
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'place_id', 'user_id', 'created_at'],
         //   include: {
         //     model: User,
         //     attributes: ['username']

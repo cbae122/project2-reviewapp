@@ -7,6 +7,7 @@ async function addToProfile(name, address, rating) {
       name,
       address,
       rating,
+     
         
         
         
@@ -24,4 +25,12 @@ async function addToProfile(name, address, rating) {
   }
   console.log(address);
 }
+    if (response.ok) {
+      alert('Added to your favorite! Please go to your profile to review this place')
+    } else {
+      alert('ERROR');
+      
+    }
+    // console.log(img);
+  }
  

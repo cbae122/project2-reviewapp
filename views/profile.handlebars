@@ -1,17 +1,25 @@
 <div>
-    <h2>Your restaurant</h2>
+    <h2>Your restaurants</h2>
     {{#if places.length}}
 </div>
  {{#each places as |place| }}
 <div id="card-container">
     <div class="row" id="miko">
-        <div class="col s3 m3">
+        <div class="col s12 m6 l3">
             <div class="card white">
                 <div class="card-content black-text">
+                    {{!-- <div class="card-image">
+                <img src="data:image/jpeg;base64,{{place.img}}" alt="{{place.name}}">
+              </div>  --}}
                     <span class="card-title">{{place.name}}
                     </span>
                     <p>{{place.address}}</p>
                     <p>rating: {{place.rating}}</p>
+                     <div>
+           <a href= "http://google.com/maps/place/{{place.address}}" target="_blank">Get Direction<span class="material-symbols-outlined">
+           navigation
+           </span></a>
+           </div>
                 </div>
             </div>
             <div>

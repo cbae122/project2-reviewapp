@@ -103,3 +103,28 @@ text-align: center;
 .material-symbols-outlined {
     padding: 3px;
 }
+.login-screen {
+    scale: .95;
+}
+.card-image {
+    max-width: 100%;
+    max-height: 275.63px;
+    object-fit: cover;
+  }
+  img {
+    height: 275.63px;
+    max-width: 100%;
+  }
+  
+  #miko.row > * {
+    flex-direction: column;
+    text-align: center;
+}
+.frame{
+    height: 30rem;
+}
+@media screen and (max-width: 768px) {
+    .card-content{
+        height: 8rem;
+    }
+} 
