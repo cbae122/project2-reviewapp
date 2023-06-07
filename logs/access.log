@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 GET /profile 404 146 - 4.375 ms
 GET / 200 278 - 23.510 ms
 GET / 304 - - 7.507 ms
@@ -4647,3 +4648,5 @@ GET /api/google/91731 200 5678 - 512.358 ms
 GET /login 304 - - 6.457 ms
 POST /api/users/login 200 174 - 66.680 ms
 GET / 200 3029 - 4.479 ms
+=======
+>>>>>>> 281805dddbc3b0a73f2f54f4fac5f2da81d26f55
