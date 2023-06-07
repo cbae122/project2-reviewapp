@@ -103,3 +103,6 @@ text-align: center;
 .material-symbols-outlined {
     padding: 3px;
 }
+.login-screen {
+    scale: .95;
+}
