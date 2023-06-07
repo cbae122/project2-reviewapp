@@ -40,8 +40,8 @@ searchButton.addEventListener('click', async function (event) {
                 <p>Address: ${address}</p>
                 <p>Rating: ${rating}</p>
               </div>
-              <div class="card-image">
-                <img src="data:image/jpeg;base64,${img}" alt="${name}">
+              <div class="card-image" style="max-height: 200px;">
+                <img src="data:image/jpeg;base64,${img}" alt="${name}" style="max-width: 100%; object-fit: cover;">
               </div>
               <div class="card-action">
                 <a href="#">This is a link</a>

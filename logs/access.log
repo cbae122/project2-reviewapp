@@ -4723,3 +4723,12 @@ GET /api/google/Diamond%20Bar 200 2371258 - 553.264 ms
 GET /api/google/Diamond%20Bar 200 2371258 - 636.796 ms
 GET /api/google/Long%20Beach 200 2533320 - 952.883 ms
 GET /api/google/Long%20Beach 200 2533346 - 465.051 ms
+GET /? 304 - - 25.643 ms
+GET /api/google/LAHORE 200 2626169 - 641.861 ms
+GET /? 304 - - 28.042 ms
+GET /api/google/Diamond%20Bar 200 2371258 - 577.978 ms
+GET /? 304 - - 12.668 ms
+GET /api/google/Diamond%20Bar 200 2371258 - 937.223 ms
+GET /api/google/Diamond%20Bar 200 2371258 - 692.314 ms
+GET /? 304 - - 22.208 ms
+GET /api/google/Diamond%20Bar 200 2371258 - 1547.738 ms
