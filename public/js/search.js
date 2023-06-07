@@ -31,15 +31,21 @@ var zipcode = document.querySelector('.form-search').value
           var name = placeDetailsResponses[i].name;
           var address = placeDetailsResponses[i].address;
           var rating = placeDetailsResponses[i].rating;
-          var img = placeDetailsResponses[i].photoReference;
-          name.replace("'", "&lsquo;")
+          var img = placeDetailsResponses[i].photoBase64;
+          // address.replace(" ", "+");
+          name.replace("'", "&lsquo;");
+          // img.replace("'", "&lsquo;");
+
           // console.log(name);
           html +=
           `
         <div class ="col s12 m6 l3">
         <div class="card white">
-          <div class="card-content black-text">
-            <span class="card-title">${name} 
+          <div class="card-content black-text frame">
+          <div class="card-image">
+                <img src="data:image/jpeg;base64,${img}" alt="${name}">
+              </div> 
+          <span class="card-title">${name} 
             </span>
             <p>Address: ${address}</p>
             <p class="Srating">Rating: ${rating}
@@ -50,17 +56,23 @@ verified
            
             
             </p>
-           
+           <div>
+           <a href= "http://google.com/maps/place/${address.replace(" ", "+")}" target="_blank">Get Direction<span class="material-symbols-outlined">
+           navigation
+           </span></a>
+           </div>
     
           </div>
          
-          <button type=submit class="profile" onclick="addToProfile('${name.replace("'", "&lsquo;")}', '${address}', '${rating}', '${img}')">Add to your favorite!</button>
+          <button type=submit class="profile" onclick="addToProfile('${name.replace("'", "&lsquo;")}', '${address}', '${rating}')">Add to your favorite!<span class="material-symbols-outlined">
+favorite
+</span></button>
         </div>
       </div>`
         
           resResult.innerHTML = html;
          
-          
+       
         
 
             

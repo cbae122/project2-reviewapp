@@ -27,8 +27,9 @@ Place.init(
             allowNull: false,
         },
         // img: {
-        //     type: DataTypes.STRING,
+        //     type: DataTypes.TEXT,
         //     allowNull: false,
+            
 
         // },
 

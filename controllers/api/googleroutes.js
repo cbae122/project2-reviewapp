@@ -40,53 +40,45 @@ router.get('/:zip/:location?', async (req, res) => {
             openingHours: place.opening_hours ? place.opening_hours.weekday_text : null,
           };
         });
-        // console.log(JSON.stringify(placesResponse.data));
-          return nearbyRestaurants
-        // const placeDetailsPromises = placesResults.map(place => {
-        //   const placeDetailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.place_id}&key=${process.env.API_KEY}`;
-        //   return axios.get(placeDetailsUrl);
-        // });
-        // return Promise.all(placeDetailsPromises);
+        return nearbyRestaurants;
+
       })
       .then(placeDetailsResponses => {
-        console.log(placeDetailsResponses);
-        // const extractedData = placeDetailsResponses.map(response => {
-        //   const { result } = response.data;
-        //   return {
-        //     address: result.formatted_address,
-        //     location: result.geometry.location,
-        //     photoReference: result.photos ? result.photos[0].photo_reference : null,
-        //     openingHours: result.opening_hours ? result.opening_hours.weekday_text : null,
-        //     // reviews: result.reviews ? result.reviews.map(review => ({
-        //     //   author: review.author_name,
-        //     //   rating: review.rating,
-        //     //   text: review.text,
-        //     // })) : null,
-        //   };
-        // });
         const photos = [];
-        const encoded = [];
+        const requests = [];
+
         placeDetailsResponses.forEach(async place => {
           let ref = place.photoReference;
           if (ref) {
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${ref}&key=${process.env.API_KEY}`;
-            let photo = await axios.get(photoUrl);
-            console.log(photo.data);
-            photos.push(photo.data);
-          }
-          // photos.forEach(file => {
-          //   let bitmap = fs.readFileSync(file);
-          //   encoded.push (new Buffer(bitmap).toString('base64'));
-          // });
-          // res.json(photos[0]);
+            requests.push(
+              axios.get(photoUrl, {
+                responseType: 'arraybuffer',
+              })
+            );
+          }          
         });
-        res.status(200).json({ placeDetailsResponses, photos: photos[0] });
+
+        Promise.all(requests)
+          .then((responseArray) => {
+            console.log('Promises plural resolved');
+            // console.log(responseArray);
+
+            responseArray.forEach((response, index) => {
+              const photo = Buffer.from(response.data, 'binary').toString('base64');
+              photos.push(photo);
+              // console.log(photo);
+              placeDetailsResponses[index].photoBase64 = photo;
+            });
+            // res.json({message: 'end'});
+            res.status(200).json({ placeDetailsResponses, photos });
+          });
       })
       .catch(error => {
         res.status(500).json({ error: error.message });
       });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 });
 
