@@ -30,6 +30,9 @@ npm i
 - Add your favorite to your profile for easy access later
 - Comment on your favorite spots so others can see!
 
+## Links
+- https://findine.herokuapp.com/
+- https://drive.google.com/file/d/11yREe1mH-uEVMfpdcaeLAqkw3PZQUHHY/view
   
 ## Credits
   
